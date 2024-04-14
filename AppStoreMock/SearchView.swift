@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  SearchView.swift
 //  AppStoreMock
 //
 //  Created by wizz on 4/12/24.
@@ -7,7 +7,12 @@
 
 import SwiftUI
 
-struct ContentView: View {
+class ContentViewModel: ObservableObject {
+    
+}
+
+
+struct SearchView: View {
     var body: some View {
         NavigationStack{
             
@@ -68,6 +73,6 @@ struct ScreenshotsRow: View {
 }
 
 #Preview {
-    ContentView()
+    SearchView()
         .preferredColorScheme(.dark)
 }
