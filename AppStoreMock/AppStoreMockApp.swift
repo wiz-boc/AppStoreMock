@@ -11,7 +11,7 @@ import SwiftUI
 struct AppStoreMockApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            SearchView()
         }
     }
 }

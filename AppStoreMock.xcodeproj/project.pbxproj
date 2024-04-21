@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		FF19A6A52BCA287C00472B28 /* AppStoreMockApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF19A6A42BCA287C00472B28 /* AppStoreMockApp.swift */; };
-		FF19A6A72BCA287C00472B28 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF19A6A62BCA287C00472B28 /* ContentView.swift */; };
+		FF19A6A72BCA287C00472B28 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF19A6A62BCA287C00472B28 /* SearchView.swift */; };
 		FF19A6A92BCA287F00472B28 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF19A6A82BCA287F00472B28 /* Assets.xcassets */; };
 		FF19A6AC2BCA287F00472B28 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF19A6AB2BCA287F00472B28 /* Preview Assets.xcassets */; };
 /* End PBXBuildFile section */
@@ -16,7 +16,7 @@
 /* Begin PBXFileReference section */
 		FF19A6A12BCA287C00472B28 /* AppStoreMock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppStoreMock.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF19A6A42BCA287C00472B28 /* AppStoreMockApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStoreMockApp.swift; sourceTree = "<group>"; };
-		FF19A6A62BCA287C00472B28 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		FF19A6A62BCA287C00472B28 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		FF19A6A82BCA287F00472B28 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FF19A6AB2BCA287F00472B28 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -52,7 +52,7 @@
 			isa = PBXGroup;
 			children = (
 				FF19A6A42BCA287C00472B28 /* AppStoreMockApp.swift */,
-				FF19A6A62BCA287C00472B28 /* ContentView.swift */,
+				FF19A6A62BCA287C00472B28 /* SearchView.swift */,
 				FF19A6A82BCA287F00472B28 /* Assets.xcassets */,
 				FF19A6AA2BCA287F00472B28 /* Preview Content */,
 			);
@@ -137,7 +137,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FF19A6A72BCA287C00472B28 /* ContentView.swift in Sources */,
+				FF19A6A72BCA287C00472B28 /* SearchView.swift in Sources */,
 				FF19A6A52BCA287C00472B28 /* AppStoreMockApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
