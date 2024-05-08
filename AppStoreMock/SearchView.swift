@@ -6,62 +6,20 @@
 //
 
 import SwiftUI
-import Combine
 
-struct SearchResult: Codable {
-    let results: [Result]
-}
-
-struct Result: Codable, Identifiable {
-    var id: Int { trackId }
-    let trackId: Int
-    let trackName: String
-    let artworkUrl512: String
-    let artistName: String
-    let primaryGenreName: String
-    let genres: [String]
-    let screenshotUrls :[String]
-}
-
-// ioS 17 has @Observable macro
-@MainActor
-class SearchViewModel: ObservableObject {
-    
-    @Published var results: [Result] = [Result]()
-    @Published var query = ""
-    @Published var isSearching = false
-    
-    private var cancelable = Set<AnyCancellable>()
-    
-    init(){
-        $query.debounce(for: 0.5, scheduler: DispatchQueue.main).sink { [weak self] newValue in
-            guard let self else { return }
-            self.fetchJSONData(searchValue: newValue)
-        }.store(in: &cancelable)
-        
-    }
-    
-    private func fetchJSONData(searchValue: String){
-        //contact sever for JSON data
-        Task{
-            do{
-                guard let url = URL(string: "https://itunes.apple.com/search?term=\(searchValue)&entity=software") else { return }
-                isSearching = true
-                let (data, _) = try await URLSession.shared.data(from: url)
-                let searchResult = try JSONDecoder().decode(SearchResult.self, from: data)
-                
-                //DispatchQueue.main.async {
-                //    self.results = searchResult.results
-                //}
-                //Task { @MainActor in
-                //    self.results = searchResult.results
-                //}
-                self.results = searchResult.results
-                isSearching = false
-            }catch{
-                print("Failed due to error: ", error)
-                isSearching = false
-            }
+extension Int {
+    var roundedWithAbbreviations: String {
+        let number = Double(self)
+        let thousand = number / 1000
+        let million = number / 1000000
+        if million >= 1.0 {
+            return "\(round(million*10)/10)M"
+        }
+        else if thousand >= 1.0 {
+            return "\(round(thousand*10)/10)K"
+        }
+        else {
+            return "\(self)"
         }
     }
 }
@@ -94,11 +52,16 @@ struct SearchView: View {
                     }else{
                         ScrollView{
                             ForEach(vm.results) { result in
-                                VStack(alignment: .leading, spacing: 16){
-                                    AppIconTitleView(result: result)
-                                    ScreenshotsRow(proxy: proxy, result: result)
+                                NavigationLink {
+                                    AppDetailView(trackId: result.trackId)
+                                } label: {
+                                    VStack(alignment: .leading, spacing: 16){
+                                        AppIconTitleView(result: result)
+                                        ScreenshotsRow(proxy: proxy, result: result)
+                                    }
+                                    .foregroundStyle(Color(.label))
+                                    .padding(16)
                                 }
-                                .padding(16)
                             }
                         }
                     }
@@ -132,10 +95,24 @@ struct AppIconTitleView: View {
                     .font(.system(size: 20))
                 Text("Photo & Video")
                     .foregroundStyle(.gray)
-                Text("STARS 34.0M")
+                HStack(spacing: 1){
+                    ForEach(0..<Int(result.averageUserRating), id: \.self){ num in
+                        Image(systemName: "star.fill")
+                    }
+                    ForEach(0..<5 - Int(result.averageUserRating), id: \.self){ num in
+                        Image(systemName: "star")
+                    }
+                    Text("\(result.userRatingCount.roundedWithAbbreviations)")
+                        .padding(.leading,4)
+                }
+                .padding(.top,0)
             }
             Spacer(minLength: 0)
-            Image(systemName: "icloud.and.arrow.down")
+            
+            Button{} label: {
+                Image(systemName: "icloud.and.arrow.down")
+                    .font(.system(size: 24))
+            }
             
         }
         .frame(maxWidth: .infinity, alignment: .leading)
@@ -159,7 +136,7 @@ struct ScreenshotsRow: View {
                         image
                             .resizable()
                             .scaledToFill()
-                            .frame(width: width, height: 200)
+                            .frame(width: width, height: 200) 
                     } placeholder: {
                         RoundedRectangle(cornerRadius: 12)
                             .frame(width: width, height: 200)
