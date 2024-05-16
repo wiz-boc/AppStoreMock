@@ -158,49 +158,6 @@ struct AppDetailView: View {
     }
 }
 
-struct FullScreenScreenshotsView: View {
-    @Environment(\.dismiss) var dismiss
-    let screenshotUrls: [String]
-    var body: some View {
-        GeometryReader { proxy in
-            ZStack{
-                VStack{
-                    Button {
-                        dismiss()
-                    } label: {
-                        Image(systemName: "xmark")
-                            .foregroundStyle(Color(.label))
-                            .font(.system(size: 24, weight: .semibold))
-                    }
-                    
-                    Spacer()
-                }
-                .frame(maxWidth: .infinity, alignment: .trailing)
-                .padding()
-                
-                ScrollView(.horizontal){
-                    HStack{
-                        ForEach(screenshotUrls, id: \.self){ screenshotUrl in
-                            let width = proxy.size.width - 64
-                            AsyncImage(url: URL(string: screenshotUrl)) { image in
-                                image
-                                    .resizable()
-                                    .scaledToFill()
-                                    .frame(width: width, height: 550)
-                                    .clipShape(RoundedRectangle(cornerRadius: 12))
-                            } placeholder: {
-                                RoundedRectangle(cornerRadius: 12)
-                                    .frame(width: width, height: 550)
-                                    .foregroundStyle(Color(.label))
-                            }
-                        }
-                    }
-                    .padding(.horizontal, 32)
-                }
-            }
-        }
-    }
-}
  
 #Preview {
     NavigationStack{

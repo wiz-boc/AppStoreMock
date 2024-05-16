@@ -11,6 +11,9 @@
 		FF19A6A72BCA287C00472B28 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF19A6A62BCA287C00472B28 /* SearchView.swift */; };
 		FF19A6A92BCA287F00472B28 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF19A6A82BCA287F00472B28 /* Assets.xcassets */; };
 		FF19A6AC2BCA287F00472B28 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF19A6AB2BCA287F00472B28 /* Preview Assets.xcassets */; };
+		FF8949D12BF5B3A500EDD265 /* FullScreenScreenshotsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8949D02BF5B3A500EDD265 /* FullScreenScreenshotsView.swift */; };
+		FF8949D32BF69B9600EDD265 /* ReviewResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8949D22BF69B9600EDD265 /* ReviewResults.swift */; };
+		FF8949D62BF69C6300EDD265 /* ReviewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8949D52BF69C6300EDD265 /* ReviewsView.swift */; };
 		FFD31E512BD8B09100D7CDB1 /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD31E502BD8B09100D7CDB1 /* SearchResult.swift */; };
 		FFD31E542BD8B0CA00D7CDB1 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD31E532BD8B0CA00D7CDB1 /* SearchViewModel.swift */; };
 		FFEF034A2BE9BB3400380DEA /* AppDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFEF03492BE9BB3400380DEA /* AppDetailView.swift */; };
@@ -22,6 +25,9 @@
 		FF19A6A62BCA287C00472B28 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		FF19A6A82BCA287F00472B28 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FF19A6AB2BCA287F00472B28 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		FF8949D02BF5B3A500EDD265 /* FullScreenScreenshotsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullScreenScreenshotsView.swift; sourceTree = "<group>"; };
+		FF8949D22BF69B9600EDD265 /* ReviewResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewResults.swift; sourceTree = "<group>"; };
+		FF8949D52BF69C6300EDD265 /* ReviewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsView.swift; sourceTree = "<group>"; };
 		FFD31E502BD8B09100D7CDB1 /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
 		FFD31E532BD8B0CA00D7CDB1 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		FFEF03492BE9BB3400380DEA /* AppDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDetailView.swift; sourceTree = "<group>"; };
@@ -57,6 +63,7 @@
 		FF19A6A32BCA287C00472B28 /* AppStoreMock */ = {
 			isa = PBXGroup;
 			children = (
+				FF8949D42BF69C4B00EDD265 /* Views */,
 				FFD31E522BD8B0BB00D7CDB1 /* ViewModel */,
 				FFD31E4F2BD8B07E00D7CDB1 /* Model */,
 				FF19A6A42BCA287C00472B28 /* AppStoreMockApp.swift */,
@@ -76,10 +83,20 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		FF8949D42BF69C4B00EDD265 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				FF8949D02BF5B3A500EDD265 /* FullScreenScreenshotsView.swift */,
+				FF8949D52BF69C6300EDD265 /* ReviewsView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		FFD31E4F2BD8B07E00D7CDB1 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				FFD31E502BD8B09100D7CDB1 /* SearchResult.swift */,
+				FF8949D22BF69B9600EDD265 /* ReviewResults.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -163,10 +180,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				FF19A6A72BCA287C00472B28 /* SearchView.swift in Sources */,
+				FF8949D32BF69B9600EDD265 /* ReviewResults.swift in Sources */,
 				FFD31E512BD8B09100D7CDB1 /* SearchResult.swift in Sources */,
 				FFEF034A2BE9BB3400380DEA /* AppDetailView.swift in Sources */,
+				FF8949D62BF69C6300EDD265 /* ReviewsView.swift in Sources */,
 				FFD31E542BD8B0CA00D7CDB1 /* SearchViewModel.swift in Sources */,
 				FF19A6A52BCA287C00472B28 /* AppStoreMockApp.swift in Sources */,
+				FF8949D12BF5B3A500EDD265 /* FullScreenScreenshotsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

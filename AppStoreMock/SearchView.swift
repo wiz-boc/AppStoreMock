@@ -131,7 +131,7 @@ struct ScreenshotsRow: View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 16){
                 
-                ForEach(result.screenshotUrls, id: \.self){ screenshot in
+                ForEach(result.screenshotUrls.prefix(3), id: \.self){ screenshot in
                     AsyncImage(url: URL(string: screenshot)) { image in
                         image
                             .resizable()
