@@ -64,57 +64,73 @@ struct AppDetailView: View {
     
     let trackId: Int
     var body: some View {
-        ScrollView{
-            if let appDetail = vm.appDetail {
-                HStack(spacing: 16){
-                    AsyncImage(url: URL(string: appDetail.artworkUrl512)) { image in
-                        image
-                            .resizable()
-                            .frame(width: 100, height: 100)
-                            .clipShape(RoundedRectangle(cornerRadius: 16))
-                            .scaledToFill()
-                    } placeholder: {
-                        RoundedRectangle(cornerRadius: 16)
-                            .frame(width: 100, height: 100)
+        GeometryReader{ proxy in
+            ScrollView{
+                if let appDetail = vm.appDetail {
+                    HStack(spacing: 16){
+                        AsyncImage(url: URL(string: appDetail.artworkUrl512)) { image in
+                            image
+                                .resizable()
+                                .frame(width: 100, height: 100)
+                                .clipShape(RoundedRectangle(cornerRadius: 16))
+                                .scaledToFill()
+                        } placeholder: {
+                            RoundedRectangle(cornerRadius: 16)
+                                .frame(width: 100, height: 100)
+                        }
+                        VStack(alignment: .leading){
+                            Text(appDetail.trackName)
+                                .font(.system(size: 24, weight: .semibold))
+                            Text(appDetail.artistName)
+                            Image(systemName: "icloud.and.arrow.down")
+                                .font(.system(size: 24))
+                                .padding(.vertical,4)
+                        }
+                        Spacer()
                     }
+                    .padding()
+                    
                     VStack(alignment: .leading){
-                        Text(appDetail.trackName)
-                            .font(.system(size: 24, weight: .semibold))
-                        Text(appDetail.artistName)
-                        Image(systemName: "icloud.and.arrow.down")
-                            .font(.system(size: 24))
-                            .padding(.vertical,4)
+                        HStack{
+                            Text("What's New")
+                                .font(.system(size: 24, weight: .semibold))
+                                .padding(.vertical)
+                            Spacer()
+                            Button{} label: {
+                                Text("Version History")
+                            }
+                        }
+                        Text(appDetail.releaseNotes)
                     }
-                    Spacer()
-                }
-                .padding()
-                
-                VStack(alignment: .leading){
-                    HStack{
-                        Text("What's New")
+                    .padding(.horizontal)
+                    
+                    previewScreenshots
+                    
+                    
+                    VStack(alignment: .leading){
+                        Text("Reviews")
                             .font(.system(size: 24, weight: .semibold))
                             .padding(.vertical)
-                        Spacer()
-                        Button{} label: {
-                            Text("Version History")
-                        }
+                        
                     }
-                    Text(appDetail.releaseNotes)
+                    .padding(.horizontal)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    
+                    ReviewsView(trackId: self.trackId, proxy: proxy)
+                    
+                    
+                    VStack(alignment: .leading){
+                        Text("Description")
+                            .font(.system(size: 24, weight: .semibold))
+                            .padding(.vertical)
+                        Text(appDetail.description)
+                    }
+                    .padding(.horizontal)
                 }
-                .padding(.horizontal)
-                
-                previewScreenshots
-                
-                VStack(alignment: .leading){
-                    Text("Description")
-                        .font(.system(size: 24, weight: .semibold))
-                        .padding(.vertical)
-                    Text(appDetail.description)
-                }
-                .padding(.horizontal)
             }
         }
-        .navigationBarTitleDisplayMode(.inline)
+            .navigationBarTitleDisplayMode(.inline)
+        
        // .navigationTitle("Search")
     }
     @State var isPresentingFullScreenScreenshots = false

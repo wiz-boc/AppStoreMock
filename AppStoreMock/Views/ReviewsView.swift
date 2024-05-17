@@ -35,35 +35,57 @@ class ReviewsViewModel: ObservableObject {
 struct ReviewsView: View {
     
     @StateObject var vm: ReviewsViewModel
+    private let proxy: GeometryProxy
     
-    init(trackId: Int){
+    init(trackId: Int, proxy: GeometryProxy){
         self._vm = .init(wrappedValue: .init(trackId: trackId))
+        self.proxy = proxy
     }
     
     var body: some View {
-        GeometryReader { proxy in
-            ScrollView(.horizontal) {
+        ScrollView(.horizontal, showsIndicators: false) {
                 HStack{
                     ForEach(vm.entries){ review in
-                        VStack{
+                        VStack(alignment: .leading, spacing: 16){
+                            HStack{
+                                Text(review.title.label)
+                                    .lineLimit(1)
+                                    .font(.system(size: 20, weight: .semibold))
+                                Spacer()
+                                Text(review.author.name.label)
+                                    .lineLimit(1)
+                                    .foregroundStyle(Color(.lightGray))
+                            }
+                            HStack{
+                                if let rating = Int(review.rating.label) {
+                                    ForEach(0..<rating, id: \.self){ num in
+                                        Image(systemName: "star.fill")
+                                    }
+                                    
+                                    ForEach(0..<5 - rating, id: \.self){ num in
+                                        Image(systemName: "star")
+                                    }
+                                }
+                            }
                             Text(review.content.label)
-                                .padding()
+                            Spacer()
                         }
-                        .padding()
+                        .padding(20)
                         .frame(width: proxy.size.width - 64, height: 230)
                         .background(Color(.init(white: 1, alpha: 0.1)))
-                        .clipShape(RoundedRectangle(cornerRadius: 8))
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
                     }
                 }
-                .padding(16)
+                .padding(.horizontal, 16)
                 .scrollTargetLayout()
             }
             .scrollTargetBehavior(.viewAligned)
         }
-    }
 }
 
 #Preview {
-    ReviewsView(trackId: 547702041)
-        .preferredColorScheme(.dark)
+    GeometryReader { proxy in
+        ReviewsView(trackId: 547702041, proxy: proxy)
+    }
+    .preferredColorScheme(.dark)
 }
