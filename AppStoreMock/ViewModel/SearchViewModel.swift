@@ -28,20 +28,11 @@ class SearchViewModel: ObservableObject {
     
     private func fetchJSONData(searchValue: String){
         //contact sever for JSON data
+        
         Task{
             do{
-                guard let url = URL(string: "https://itunes.apple.com/search?term=\(searchValue)&entity=software") else { return }
                 isSearching = true
-                let (data, _) = try await URLSession.shared.data(from: url)
-                let searchResult = try JSONDecoder().decode(SearchResult.self, from: data)
-                
-                //DispatchQueue.main.async {
-                //    self.results = searchResult.results
-                //}
-                //Task { @MainActor in
-                //    self.results = searchResult.results
-                //}
-                self.results = searchResult.results
+                self.results = try await APIService.fetchSearchResults(searchValue: searchValue)
                 isSearching = false
             }catch{
                 print("Failed due to error: ", error)

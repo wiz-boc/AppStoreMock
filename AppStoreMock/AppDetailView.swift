@@ -7,28 +7,14 @@
 
 import SwiftUI
 
-struct AppDetailResult: Codable {
-    let resultCount: Int
-    let results: [AppDetail]
-    
-}
-
-struct AppDetail: Codable, Identifiable {
-    var id: Int { trackId }
-    let trackName: String
-    let artistName: String
-    let trackId: Int
-    let artworkUrl512: String
-    let releaseNotes: String
-    let description: String
-    let screenshotUrls: [String]
-}
 
 @MainActor
 class AppDetailViewModel: ObservableObject {
     
+
     
     @Published var appDetail: AppDetail?
+    @Published var error: Error?
     private let trackId: Int
     
     init(trackId: Int){
@@ -38,18 +24,14 @@ class AppDetailViewModel: ObservableObject {
     }
     
     private func fetchJSONData(){
-        
         Task{
             do{
-                guard let url = URL(string: "https://itunes.apple.com/lookup?id=\(trackId)") else { return }
-                let (data, _) = try await URLSession.shared.data(from: url)
-                //print(String(data:data, encoding: .utf8))
-                let appDetailResults = try JSONDecoder().decode(AppDetailResult.self, from: data)
-                self.appDetail = appDetailResults.results.first
+                self.appDetail = try await APIService.fetchAppDetail(trackId: trackId)
             }catch{
-                print("Failed to fetch app detail:", error)
+                self.error = error
             }
         }
+
     }
 }
 
@@ -65,6 +47,13 @@ struct AppDetailView: View {
     let trackId: Int
     var body: some View {
         GeometryReader{ proxy in
+            if let error = vm.error {
+                Text("Failed to fetch app details: \(error.localizedDescription)")
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .font(.largeTitle)
+                    .padding()
+                    .multilineTextAlignment(.center)
+            }
             ScrollView{
                 if let appDetail = vm.appDetail {
                     HStack(spacing: 16){
