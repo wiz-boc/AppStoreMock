@@ -25,6 +25,72 @@ struct APIService {
         return reviewsResults.feed.entry
     }
     
+    static func dummyInvokingFunction(){
+        //Old leacy completion handler style
+        legacyFetchReviews(trackId: 1234) { result in
+            switch result {
+                case .success(let reviews):
+                    DispatchQueue.main.async{
+                        print(reviews)
+                    }
+                case .failure(let error):
+                    print("Failed to fetch reviews:", error)
+            }
+        }
+        
+        //async await
+        Task {
+            let reviews = try await asyncLegacyFetchReviews(trackId:12345)
+            let appDetails = try await fetchAppDetail(trackId: 12345)
+            print(reviews)
+        }
+    }
+    
+    static func asyncLegacyFetchReviews(trackId: Int) async throws -> [Review] {
+        try await withCheckedThrowingContinuation { continuation in
+          //  continuation.
+            legacyFetchReviews(trackId: trackId) { result in
+                switch result {
+                    case .success(let reviews):
+                        continuation.resume(returning: reviews)
+                    case .failure(let error):
+                        continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+    
+    static func legacyFetchReviews(trackId: Int, completion: @escaping (Swift.Result<[Review],Error>) -> Void){
+        
+        guard let url = URL(string: "https://itunes.apple.com/rss/customerreviews/page=1/id=\(trackId)/sortby=mostrecent/json?l=en&cc=us") else {
+            completion(.failure(APIError.invalidURL))
+            return
+        }
+        
+        URLSession.shared.dataTask(with: URLRequest(url: url)) { data, response, error in
+            if let error {
+                completion(.failure(error))
+                return
+            }
+            
+            if let statusCode = (response as? HTTPURLResponse)?.statusCode, !(200..<299 ~= statusCode){
+                completion(.failure(APIError.badResponse(statusCode: statusCode)))
+                return
+            }
+            guard let data else { 
+                completion(.failure(APIError.appDetailNotFound))
+                return
+            }
+            
+            do{
+                let reviewsResults: ReviewResults = try JSONDecoder().decode(ReviewResults.self, from: data)
+                completion(.success(reviewsResults.feed.entry ))
+            }catch{
+                completion(.failure(error))
+            }
+        }.resume()
+    }
+    
     //Use generics to clean up your code
     static private func decode<T: Codable>(urlString: String) async throws -> T {
         guard let url = URL(string: urlString) else { throw APIError.invalidURL }
