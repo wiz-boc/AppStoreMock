@@ -14,6 +14,8 @@
 		FF86063C2BFAC4BD006045D3 /* AppDetailResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF86063B2BFAC4BD006045D3 /* AppDetailResult.swift */; };
 		FF86063E2BFAC4FB006045D3 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF86063D2BFAC4FB006045D3 /* APIService.swift */; };
 		FF8606402BFAC915006045D3 /* ReviewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF86063F2BFAC915006045D3 /* ReviewsViewModel.swift */; };
+		FF8606422BFC1B6F006045D3 /* AppDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8606412BFC1B6F006045D3 /* AppDetailViewModel.swift */; };
+		FF8606442BFC1B94006045D3 /* SampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8606432BFC1B94006045D3 /* SampleView.swift */; };
 		FF8949D12BF5B3A500EDD265 /* FullScreenScreenshotsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8949D02BF5B3A500EDD265 /* FullScreenScreenshotsView.swift */; };
 		FF8949D32BF69B9600EDD265 /* ReviewResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8949D22BF69B9600EDD265 /* ReviewResults.swift */; };
 		FF8949D62BF69C6300EDD265 /* ReviewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8949D52BF69C6300EDD265 /* ReviewsView.swift */; };
@@ -31,6 +33,8 @@
 		FF86063B2BFAC4BD006045D3 /* AppDetailResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDetailResult.swift; sourceTree = "<group>"; };
 		FF86063D2BFAC4FB006045D3 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		FF86063F2BFAC915006045D3 /* ReviewsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsViewModel.swift; sourceTree = "<group>"; };
+		FF8606412BFC1B6F006045D3 /* AppDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDetailViewModel.swift; sourceTree = "<group>"; };
+		FF8606432BFC1B94006045D3 /* SampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleView.swift; sourceTree = "<group>"; };
 		FF8949D02BF5B3A500EDD265 /* FullScreenScreenshotsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullScreenScreenshotsView.swift; sourceTree = "<group>"; };
 		FF8949D22BF69B9600EDD265 /* ReviewResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewResults.swift; sourceTree = "<group>"; };
 		FF8949D52BF69C6300EDD265 /* ReviewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsView.swift; sourceTree = "<group>"; };
@@ -103,6 +107,7 @@
 			children = (
 				FF8949D02BF5B3A500EDD265 /* FullScreenScreenshotsView.swift */,
 				FF8949D52BF69C6300EDD265 /* ReviewsView.swift */,
+				FF8606432BFC1B94006045D3 /* SampleView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -122,6 +127,7 @@
 			children = (
 				FFD31E532BD8B0CA00D7CDB1 /* SearchViewModel.swift */,
 				FF86063F2BFAC915006045D3 /* ReviewsViewModel.swift */,
+				FF8606412BFC1B6F006045D3 /* AppDetailViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -203,8 +209,10 @@
 				FFEF034A2BE9BB3400380DEA /* AppDetailView.swift in Sources */,
 				FF8949D62BF69C6300EDD265 /* ReviewsView.swift in Sources */,
 				FF8606402BFAC915006045D3 /* ReviewsViewModel.swift in Sources */,
+				FF8606422BFC1B6F006045D3 /* AppDetailViewModel.swift in Sources */,
 				FF86063E2BFAC4FB006045D3 /* APIService.swift in Sources */,
 				FFD31E542BD8B0CA00D7CDB1 /* SearchViewModel.swift in Sources */,
+				FF8606442BFC1B94006045D3 /* SampleView.swift in Sources */,
 				FF19A6A52BCA287C00472B28 /* AppStoreMockApp.swift in Sources */,
 				FF8949D12BF5B3A500EDD265 /* FullScreenScreenshotsView.swift in Sources */,
 			);

@@ -41,7 +41,7 @@ struct APIService {
         //async await
         Task {
             let reviews = try await asyncLegacyFetchReviews(trackId:12345)
-            let appDetails = try await fetchAppDetail(trackId: 12345)
+            //let appDetails = try await fetchAppDetail(trackId: 12345)
             print(reviews)
         }
     }
