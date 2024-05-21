@@ -9,17 +9,24 @@ import Foundation
 import Combine
 
 // ioS 17 has @Observable macro
-@MainActor
-class SearchViewModel: ObservableObject {
+@Observable
+class SearchViewModel {
     
-    @Published var results: [Result] = [Result]()
-    @Published var query = "Pokemon"
-    @Published var isSearching = false
+    var results: [Result] = [Result]()
+    var query = "Pokemon" {
+        didSet{
+            if oldValue != query {
+                queryPublisher.send(query)
+            }
+        }
+    }
+    var isSearching = false
     
+    private var queryPublisher = PassthroughSubject<String,Never>()
     private var cancelable = Set<AnyCancellable>()
     
     init(){
-        $query.debounce(for: 0.5, scheduler: DispatchQueue.main).sink { [weak self] newValue in
+        queryPublisher.debounce(for: 0.5, scheduler: DispatchQueue.main).sink { [weak self] newValue in
             guard let self else { return }
             self.fetchJSONData(searchValue: newValue)
         }.store(in: &cancelable)

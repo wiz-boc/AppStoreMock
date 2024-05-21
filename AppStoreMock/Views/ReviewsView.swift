@@ -10,7 +10,7 @@ import SwiftUI
 
 struct ReviewsView: View {
     
-    @StateObject var vm: ReviewsViewModel
+    @State var vm: ReviewsViewModel
     private let proxy: GeometryProxy
     
     init(trackId: Int, proxy: GeometryProxy){
@@ -47,7 +47,7 @@ struct ReviewsView: View {
                             Spacer()
                         }
                         .padding(20)
-                        .frame(width: proxy.size.width - 64, height: 230)
+                        .frame(width: max(0,proxy.size.width - 64), height: 230)
                         .background(Color(.init(white: 1, alpha: 0.1)))
                         .clipShape(RoundedRectangle(cornerRadius: 10))
                     }

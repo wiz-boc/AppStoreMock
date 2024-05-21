@@ -7,9 +7,10 @@
 
 import Foundation
 
-class ReviewsViewModel: ObservableObject {
+@Observable
+class ReviewsViewModel {
     
-    @Published var entries: [Review] = [Review]()
+    var entries: [Review] = [Review]()
     init(trackId: Int){
         fetchReviews(trackId: trackId)
     }
